@@ -11,7 +11,7 @@ driver = webdriver.Chrome()
 
 class Test(unittest.TestCase):
 
-    def test_1(shop):
+    def test_1(assessment):
        
         url = "https://assessment.nexus-grid.ai/qa/"
         driver.get(url)
@@ -44,8 +44,8 @@ class Test(unittest.TestCase):
         time.sleep(1)
         driver.quit() 
     
-shop = Test()
-shop.test_1()
+assessment = Test()
+assessment.test_1()
 
 
 
