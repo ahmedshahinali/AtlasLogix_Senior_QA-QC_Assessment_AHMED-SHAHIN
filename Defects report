@@ -1,0 +1,254 @@
+
+Defects report (16 defect )
+
+Defect 1: Admin user has Compliance Approval button enabled
+Preconditions:
+User is logged in with an Admin role.
+A shipment with pending compliance decision (e.g. HOT-EXCURSION) is open.
+Steps to Reproduce:
+Login as Admin user.
+Navigate to a shipment that requires compliance decision.
+Open the Compliance tab.
+Actual Result:
+“Approve compliance” button is enabled and clickable.
+Expected Result:
+According to RBAC and Figma, only authorized roles should see the button enabled. Confirm if Admin is intentionally allowed. If not, the button should be disabled or hidden.
+Reproducibility: Always
+Severity: Major
+Priority: High
+Business/Risk Rationale: Incorrect permission assignment can lead to unauthorized compliance decisions, creating audit and regulatory risk.
+
+Defect 2: Warehouse user has Compliance Approval button enabled
+Preconditions:
+User is logged in with a Warehouse role.
+A shipment requiring compliance decision is open.
+Steps to Reproduce:
+Login as Warehouse user.
+Open a shipment with pending compliance.
+Go to Compliance tab.
+Actual Result:
+“Approve compliance” button is enabled.
+Expected Result:
+Warehouse role should not have permission to approve compliance (button should be disabled or hidden) as per RBAC design.
+Reproducibility: Always
+Severity: Critical
+Priority: Critical
+Business/Risk Rationale: Warehouse users approving compliance violates segregation of duties and can invalidate cold-chain compliance records.
+
+Defect 3: Viewer user has Compliance Approval button enabled
+Preconditions:
+User is logged in with a Viewer role.
+Shipment with pending compliance is open.
+Steps to Reproduce:
+Login as Viewer.
+Navigate to Compliance tab of a shipment.
+Actual Result:
+“Approve compliance” button is enabled and clickable.
+Expected Result:
+Viewer role is read-only. The Approve button must be completely disabled/hidden.
+Reproducibility: Always
+Severity: Critical
+Priority: Critical
+Business/Risk Rationale: Viewers being able to approve compliance is a serious security and compliance breach.
+
+Defect 4: Missing instructional text on Compliance screen
+Preconditions:
+Any authorized user is on the Compliance decision screen.
+Steps to Reproduce:
+Open a shipment.
+Go to Compliance tab.
+Actual Result:
+The text “Review operational and sensor evidence before making a compliance decision” is missing.
+Expected Result:
+The text must be displayed exactly as shown in Figma (node 38-2).
+Reproducibility: Always
+Severity: Minor
+Priority: Medium
+Business/Risk Rationale: Missing guidance increases the chance of incorrect compliance decisions.
+
+Defect 5: Missing “Maximum temperature threshold exceeded by” warning for HOT-EXCURSION
+Preconditions:
+Shipment has a HOT-EXCURSION event.
+Steps to Reproduce:
+Open a shipment with HOT-EXCURSION.
+Go to Compliance / Excursion details.
+Actual Result:
+The warning “Maximum temperature threshold exceeded by …” is not displayed.
+Expected Result:
+Warning message with the exact exceeded value must appear as designed in Figma.
+Reproducibility: Always
+Severity: Major
+Priority: High
+Business/Risk Rationale: Critical temperature information is missing, affecting compliance decision quality.
+
+Defect 6: Sensor confidence not displayed with % mark
+Preconditions:
+Sensor data is available on the shipment.
+Steps to Reproduce:
+Open any shipment with sensor readings.
+Check sensor confidence value.
+Actual Result:
+Confidence is shown as a number without the “%” symbol.
+Expected Result:
+Value must be displayed with the percentage symbol (e.g. 94%).
+Reproducibility: Always
+Severity: Minor
+Priority: Low
+Business/Risk Rationale: Inconsistent formatting reduces clarity and professional appearance.
+
+Defect 7: Excursion duration is missing for HOT-EXCURSION
+Preconditions:
+Shipment contains a HOT-EXCURSION event.
+Steps to Reproduce:
+Open shipment with HOT-EXCURSION.
+View excursion details.
+Actual Result:
+Excursion duration is not shown.
+Expected Result:
+Duration (e.g. “2h 34m”) must be displayed as per Figma.
+Reproducibility: Always
+Severity: Major
+Priority: High
+Business/Risk Rationale: Duration is a key factor in assessing product safety and compliance.
+
+Defect 8: “Auditory decision required” warning is missing for HOT-EXCURSION
+Preconditions:
+HOT-EXCURSION event exists.
+Steps to Reproduce:
+Open the shipment.
+Navigate to Compliance section.
+Actual Result:
+“Auditory decision required” warning is not displayed.
+Expected Result:
+Warning must appear exactly as designed in Figma.
+Reproducibility: Always
+Severity: Major
+Priority: High
+Business/Risk Rationale: Users may proceed without realizing a formal decision is mandatory.
+
+Defect 9: Recorder range is missing for HOT-EXCURSION
+Preconditions:
+HOT-EXCURSION event is present.
+Steps to Reproduce:
+Open the excursion details.
+Look for Recorder range information.
+Actual Result:
+Recorder range is not displayed.
+Expected Result:
+Recorder range must be shown as per Figma design.
+Reproducibility: Always
+Severity: Major
+Priority: Medium
+Business/Risk Rationale: Missing technical evidence weakens the compliance audit trail.
+
+Defect 10: Incorrect tab labels (Sensor History & Audit Log)
+Preconditions:
+User is on the shipment detail page.
+Steps to Reproduce:
+Open any shipment.
+Observe the tab names.
+Actual Result:
+“Sensor History” tab is displayed as “Sensors”
+“Audit Log” tab is displayed as “Audit”
+Expected Result:
+Tabs must be labeled exactly “Sensor History” and “Audit Log” as per Figma.
+Reproducibility: Always
+Severity: Minor
+Priority: Medium
+Business/Risk Rationale: Incorrect labels reduce usability and do not match the approved design.
+
+Defect 11: “Route handling” and “Environment thresholds” sections not matching Figma
+Preconditions:
+User is viewing shipment details.
+Steps to Reproduce:
+Open a shipment.
+Check the layout of Route handling and Environment thresholds sections.
+Actual Result:
+Sections are missing or not displayed according to Figma.
+Expected Result:
+Both sections must appear with the exact layout, labels, and data as shown in the approved Figma.
+Reproducibility: Always
+Severity: Major
+Priority: High
+Business/Risk Rationale: Missing critical operational information affects decision-making.
+
+Defect 12: Activating Viewer user does not deactivate the previous state correctly
+Preconditions:
+A user exists in the system.
+Admin is on the user management screen.
+Steps to Reproduce:
+Login as Admin.
+Activate a user with Viewer role.
+Observe the user’s status.
+Actual Result:
+Activating the Viewer user does not properly deactivate/update the previous status.
+Expected Result:
+User status must correctly change to Active (Viewer) and previous status must be properly updated.
+Reproducibility: Always
+Severity: Major
+Priority: High
+Business/Risk Rationale: Incorrect user status can lead to unauthorized access or blocked legitimate users.
+
+Defect 13: Profile picture shows only one letter
+Preconditions:
+User has a name with more than one word or expected initials.
+Steps to Reproduce:
+Login with any user.
+Check the profile avatar/initials.
+Actual Result:
+Only a single letter is displayed.
+Expected Result:
+Avatar should show proper initials (usually first letters of first + last name) as per design.
+Reproducibility: Always
+Severity: Minor
+Priority: Low
+Business/Risk Rationale: Poor visual quality and inconsistency with design system.
+
+Defect 14: Figma is missing 3 main screens (Live Sensors, Sensor History, Audit Log)
+Preconditions:
+Access to the provided Figma file.
+Steps to Reproduce:
+Open the Figma file (node 38-2).
+Search for Live Sensors, Sensor History, and Audit Log screens.
+Actual Result:
+The three main screens are missing from the Figma file.
+Expected Result:
+All three screens must be present and fully designed in Figma for development reference.
+Reproducibility: Always
+Severity: Major
+Priority: High
+Business/Risk Rationale: Missing designs block accurate implementation and cause scope ambiguity.
+
+Defect 15: “Invite tenant user” is missing from Administration screen
+Preconditions:
+User is logged in as Admin.
+Administration screen is open.
+Steps to Reproduce:
+Login as Admin.
+Navigate to Administration section.
+Look for “Invite tenant user” action.
+Actual Result:
+“Invite tenant user” option/button is missing.
+Expected Result:
+The action must be present as designed in Figma / requirements.
+Reproducibility: Always
+Severity: Major
+Priority: High
+Business/Risk Rationale: Admins cannot invite new tenant users, blocking onboarding process.
+
+Defect 16: Deactivating Operation user only deactivates Europe tenant
+Preconditions:
+An Operation user is assigned to multiple tenants (Europe + MENA).
+Admin is on user management.
+Steps to Reproduce:
+Login as Admin.
+Deactivate an Operation user who has access to both Europe and MENA tenants.
+Check the user’s status on both tenants.
+Actual Result:
+User is deactivated only on the Europe tenant. MENA tenant access remains active.
+Expected Result:
+Deactivation must apply to all tenants the user belongs to.
+Reproducibility: Always
+Severity: Critical
+Priority: Critical
+Business/Risk Rationale: Partial deactivation leaves active access on other tenants, creating a serious security vulnerability.
