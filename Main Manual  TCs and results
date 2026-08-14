@@ -1,0 +1,30 @@
+-51 Main TCs 
+Test cases planned   scenarios 
+Authentication	8 scenarios
+Tenant switching	4 scenarios
+Shipment details	5 scenarios
+Sensor states	4 scenarios
+Reports           	4 scenarios
+Approval	            5 scenarios
+Administration	3 scenarios
+Live stream	           5 scenarios
+Permission/RBAC             10   scenarios
+Accessibility/Responsive   3 scenarios 
+
+-Results 
+
+**Test Execution Summary**
+
+| Module                        | Total Scenarios | Passed | Failed | Status      |
+|-------------------------------|-----------------|--------|--------|-------------|
+| Authentication (Login)        | 8               | 8      | 0      | ✅ Passed   |
+| Tenant Switching              | 4               | 4      | 0      | ✅ Passed   |
+| Shipment Details              | 5               | 2      | 3      | ❌ Failed   |
+| Sensor States                 | 4               | 2      | 2      | ❌ Failed   |
+| Reports                       | 4               | 2      | 2      | ❌ Failed   |
+| Approval                      | 5               | 2      | 3      | ❌ Failed   |
+| Administration                | 3               | 2      | 1      | ❌ Failed   |
+| Live Stream                   | 5               | 5      | 0      | ✅ Passed   |
+| Permission / RBAC             | 10              | 5      | 5      | ❌ Failed   |
+| Accessibility / Responsive    | 3               | 3      | 0      | ✅ Passed   |
+| **Total**                     | **51**          | **35** | **16** | **68.6% Pass** |
