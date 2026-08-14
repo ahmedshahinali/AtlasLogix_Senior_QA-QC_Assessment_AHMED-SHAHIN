@@ -1,0 +1,6 @@
+Manual Test Strategy 
+1-Validate the logic of the project  (static test)
+2-Validate response and status codes for the api ( correctness of all backend endpoints)
+3-Verify authentication & authorization (Bearer token + role-based access).
+4-Ensure multi-tenancy isolation (users can only access their own tenant’s data unless PLATFORM_ADMIN).
+5-Cover positive, negative, boundary, and security scenarios. 
