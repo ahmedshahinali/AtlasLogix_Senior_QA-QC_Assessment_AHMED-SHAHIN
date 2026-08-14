@@ -25,13 +25,12 @@ class Test(unittest.TestCase):
         ).click()
         time.sleep(1)
         dropdown = Select(driver.find_element(By.TAG_NAME, "select"))
-        dropdown.select_by_index(1)
+        dropdown.select_by_visible_text("AtlasLogix AHMED-SHAHIN MENA")
         WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.XPATH, '//button[contains(text(), "Shipments")]'))
         ).click()
         time.sleep(1)
         driver.find_element(By.CSS_SELECTOR, 'input[placeholder="Search shipments"]').send_keys("NODATA")
-
         WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.CSS_SELECTOR, 'button.row-action'))
         ).click()
@@ -46,6 +45,9 @@ class Test(unittest.TestCase):
     
 assessment = Test()
 assessment.test_1()
+
+
+
 
 
 
