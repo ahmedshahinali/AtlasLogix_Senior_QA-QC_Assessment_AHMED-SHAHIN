@@ -1,0 +1,423 @@
+{
+	"info": {
+		"_postman_id": "d36ee0e8-1178-46a9-8618-77608527829e",
+		"name": "AtlasLogix Assessment API",
+		"description": "1. StartFragment\n    \n\n# AtlasLogix Assessment API\n\nEndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24261151",
+		"_collection_link": "https://ahmedshahin-105-s-team.postman.co/workspace/New-Team-Workspace~12805eb7-92cd-4692-85ce-515f29cababe/collection/24261151-d36ee0e8-1178-46a9-8618-77608527829e?action=share&source=collection_link&creator=24261151"
+	},
+	"item": [
+		{
+			"name": "https://assessment.nexus-grid.ai/api/v1/auth/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"TOKEN\", pm.response.json().token)\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"region\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Europe\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"admin.ahmed-shahin@atlaslogix.test\",\r\n  \"password\": \"Ikqo5KB6Ax9n_A0a\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://assessment.nexus-grid.ai/api/v1/auth/login",
+					"protocol": "https",
+					"host": [
+						"assessment",
+						"nexus-grid",
+						"ai"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/v1/tenants",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"tenantId\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"TENANT-AAB55A8\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://assessment.nexus-grid.ai/api/v1/tenants",
+					"protocol": "https",
+					"host": [
+						"assessment",
+						"nexus-grid",
+						"ai"
+					],
+					"path": [
+						"api",
+						"v1",
+						"tenants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "shipments/SHIP-AHMED-SHAHIN-MENA-STALE-SENSOR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"IN_TRANSIT\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://assessment.nexus-grid.ai/api/v1/shipments/SHIP-AHMED-SHAHIN-MENA-STALE-SENSOR",
+					"protocol": "https",
+					"host": [
+						"assessment",
+						"nexus-grid",
+						"ai"
+					],
+					"path": [
+						"api",
+						"v1",
+						"shipments",
+						"SHIP-AHMED-SHAHIN-MENA-STALE-SENSOR"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://assessment.nexus-grid.ai/api/v1/tenants/TENANT-AAB55A8F/users",
+					"protocol": "https",
+					"host": [
+						"assessment",
+						"nexus-grid",
+						"ai"
+					],
+					"path": [
+						"api",
+						"v1",
+						"tenants",
+						"TENANT-AAB55A8F",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/auth/me",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"role\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"TENANT_ADMIN\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://assessment.nexus-grid.ai/api/v1/auth/me",
+					"protocol": "https",
+					"host": [
+						"assessment",
+						"nexus-grid",
+						"ai"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "COMPLIANT/sensor-data/history",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"count\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"12\"); \r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://assessment.nexus-grid.ai/api/v1/shipments/SHIP-AHMED-SHAHIN-DELIVERED-COMPLIANT/sensor-data/history?limit=50",
+					"protocol": "https",
+					"host": [
+						"assessment",
+						"nexus-grid",
+						"ai"
+					],
+					"path": [
+						"api",
+						"v1",
+						"shipments",
+						"SHIP-AHMED-SHAHIN-DELIVERED-COMPLIANT",
+						"sensor-data",
+						"history"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/stream/tickets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tenantId\": \"TENANT-AHMED-SHAHIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://assessment.nexus-grid.ai/api/v1/stream/tickets",
+					"protocol": "https",
+					"host": [
+						"assessment",
+						"nexus-grid",
+						"ai"
+					],
+					"path": [
+						"api",
+						"v1",
+						"stream",
+						"tickets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NODATA",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://assessment.nexus-grid.ai/api/v1/shipments/SHIP-AHMED-SHAHIN-NODATA/sensor-data",
+					"protocol": "https",
+					"host": [
+						"assessment",
+						"nexus-grid",
+						"ai"
+					],
+					"path": [
+						"api",
+						"v1",
+						"shipments",
+						"SHIP-AHMED-SHAHIN-NODATA",
+						"sensor-data"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
